@@ -14,3 +14,4 @@ https://github.com/ArturAkh/TauFW/blob/master/docs/CMSDAS2020/main.md
 The software of this package is used in sections [8. Preparing for statistical inference](https://github.com/ArturAkh/TauFW/blob/master/docs/CMSDAS2020/prep_stat_inference.md) and
 [9. Performing the measurement](https://github.com/ArturAkh/TauFW/blob/master/docs/CMSDAS2020/measurement.md).
 
+The setup of this software is explained in [1. Setting up the analysis software](https://github.com/ArturAkh/TauFW/blob/master/docs/CMSDAS2020/sw_setup.md#checking-out-the-analysis-software)
