@@ -60,6 +60,10 @@ for channel in categories:
 ch.SetStandardBinNames(cb, '$ANALYSIS_$CHANNEL_$BIN_$ERA') # Define the name of the category names
 cb.SetAutoMCStats(cb, 0.0) # Introducing statistical uncertainties on the total background for each histogram bin (Barlow-Beeston lite approach)
 
-writer = ch.CardWriter('ztt_analysis/2018/$CHANNEL/$BIN.txt','ztt_analysis/2018/$CHANNEL/common/$BIN.root') # define the paths for the .txt datacard and 
+writer = ch.CardWriter('ztt_analysis/2018/$TAG/$BIN.txt','ztt_analysis/2018/$TAG/common/$BIN.root') # define the paths for the .txt datacard and the root inputs
 writer.SetWildcardMasses([])
-writer.WriteCards('', cb)
+
+writer.WriteCards('cmb', cb) # writing all datacards into one folder for combination
+
+for channel in categories:
+    writer.WriteCards(channel, cb.cp().channel([channel])) # writing datacards for each final state in a corresponding folder to be able to perform the measurement individually in each final state
