@@ -43,11 +43,11 @@ cb.cp().process(['ZTT']).AddSyst(cb, 'xsec_ztt', 'lnN', ch.SystMap()(1.04)) # un
 cb.cp().process(['QCD']).AddSyst(cb, 'ss_to_os_extrap', 'lnN', ch.SystMap()(1.03)) # uncertainty on QCD extrapolation factor. # TODO section 8: update with the number measured by you
 
 
-# Unconstrained rate parameter introduced for the tau IhD efficiency, which usually is measured in the same region as the cross-section for Z->tautau.
+# Unconstrained rate parameter introduced for the tau ID efficiency, which usually is measured in the same region as the cross-section for Z->tautau.
 #       This means, that these can not be disentangled in mutau final state alone. TODO section 8: consider, whether TopT and/or EWKT need to be considered
 cb.cp().channel(['mutau']).process(['ZTT', 'TopT', 'EWKT']).AddSyst(cb, 'tauh_id', 'rateParam', ch.SystMap()(1.0))
 
-# # TODO section 8: Introduced the tauh energy scale uncertainty. Consider, whether TopT and/or EWKT need to be considered
+# # TODO section 8: Introduce the tauh energy scale uncertainty. Consider, whether TopT and/or EWKT need to be considered
 #cb.cp().channel(['mutau']).process(['ZTT', 'TopT', 'EWKT']).AddSyst(cb, 'tauh_es', 'shape', ch.SystMap()(1.0))
 
 # Define access of the input histograms; please note how systematics shape variations should be stored:
