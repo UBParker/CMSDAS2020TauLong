@@ -1,0 +1,17 @@
+imax    1 number of bins
+jmax    5 number of processes minus 1
+kmax    * number of nuisance parameters
+--------------------------------------------------------------------------------
+shapes * lfvstvecu_emul_emul_2017 common/lfvstvecu_emul_emul_2017.root lfvstvecu_emul_emul_2017/$PROCESS lfvstvecu_emul_emul_2017/$PROCESS_$SYSTEMATIC
+--------------------------------------------------------------------------------
+bin          lfvstvecu_emul_emul_2017 
+observation  75.5615         
+--------------------------------------------------------------------------------
+bin                    lfvstvecu_emul_emul_2017 lfvstvecu_emul_emul_2017 lfvstvecu_emul_emul_2017 lfvstvecu_emul_emul_2017 lfvstvecu_emul_emul_2017 lfvstvecu_emul_emul_2017 
+process                2017_TX         2017_VV         2017_WZ         2017_TTbar      2017_others     2017_LFVStVecU  
+process                1               2               3               4               5               0               
+rate                   75.5615         75.5615         75.5615         75.5615         75.5615         75.5615         
+--------------------------------------------------------------------------------
+lumi_2017      lnN     1.025           1.025           1.025           -               -               1.025           
+muon_eff       lnN     1.02            1.02            1.02            -               -               1.02            
+lfvstvecu_emul_emul_2017 autoMCStats 0 0 1
