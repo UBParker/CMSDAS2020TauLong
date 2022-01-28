@@ -55,13 +55,14 @@ cb.cp().process(['VV', 'VV']).AddSyst(cb, 'xsec_vv', 'lnN', ch.SystMap()(1.06)) 
 # Define access of the input histograms; please note how systematics shape variations should be stored:
 #       $BIN/m_vis_$PROCESS_$SYSTEMATIC with $SYSTEMATIC containing the name like 'tau_es' and a postfix 'Up' or 'Down'
 for channel in categories:
-    #for f in 
+    for f in mc :
+        filepath_mc = os.path.join(os.environ['CMSSW_BASE'],'src/CombineHarvester/CMSDAS2020TauLong/shapes', f +'.root')
+        cb.cp().channel([channel]).backgrounds().ExtractShapes(filepath_mc,  'VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST'  ,  'VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST_$SYSTEMATIC')
+
     filepath_signal = os.path.join(os.environ['CMSSW_BASE'],'src/CombineHarvester/CMSDAS2020TauLong/shapes', signals[0]+'.root')
-    filepath_mc = os.path.join(os.environ['CMSSW_BASE'],'src/CombineHarvester/CMSDAS2020TauLong/shapes', mc[0]+'.root')
 
-    cb.cp().channel([channel]).backgrounds().ExtractShapes(filepath_mc,  'VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST'  ,  'VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST_$SYSTEMATIC')
     cb.cp().channel([channel]).signals().ExtractShapes(filepath_mc, 'VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST'  ,  'VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST_$SYSTEMATIC')
-
+  
 
 ch.SetStandardBinNames(cb, '$ANALYSIS_$CHANNEL_$BIN_$ERA') # Define the name of the category names
 cb.SetAutoMCStats(cb, 0.0) # Introducing statistical uncertainties on the total background for each histogram bin (Barlow-Beeston lite approach)
