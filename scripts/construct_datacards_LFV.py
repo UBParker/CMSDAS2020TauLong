@@ -34,15 +34,18 @@ cb.ForEachObs(lambda x : x.set_process('SingleMuon_Run2017')) # some hack to cha
 
 ## Normalization uncertainties, modelled with nuisance parameters drawn from lnN distributions:
 
-cb.cp().process(mc).AddSyst(cb,'lumi_2017', 'lnN', ch.SystMap()(1.025)) # 2.5 % uncertainty on luminosity for 2018 from the measurement
+cb.cp().process(mc).AddSyst(cb,'lumi_2017', 'lnN', ch.SystMap()(1.023)) # 2.3 % uncertainty on luminosity for 2017 from the measurement
 cb.cp().process(mc).AddSyst(cb,'muon_eff', 'lnN', ch.SystMap()(1.02)) # 2 % uncertainty on muon ID + Isolation efficiency
+# check if muon efficiency is dfferent than electron
+# Below are taken into account using their _UP/DOWN variation
+#b-tagging, trigger, JEC, PU, ECAL prefiring, L1 prefiring, 
+# to be added later HEM
 
-cb.cp().process(['VV', 'VV']).AddSyst(cb, 'xsec_vv', 'lnN', ch.SystMap()(1.06)) # conservative uncertainty estimate for ttbar (6%) single top (5%) cross-section
-#cb.cp().process(['EWKT', 'EWKJ']).AddSyst(cb, 'xsec_ewk', 'lnN', ch.SystMap()(1.05)) # conservative uncertainty estimate for w+jets (4%) and diboson (5%) cross-section
-#cb.cp().process(['ZL']).AddSyst(cb, 'xsec_zl', 'lnN', ch.SystMap()(1.04)) # uncertainty on DY production; note, that it is kept separated from signal here (for simplification)
-#cb.cp().process(['ZTT']).AddSyst(cb, 'xsec_ztt', 'lnN', ch.SystMap()(1.04)) # uncertainty on DY production; note, that it is kept separated from background here (for simplification)
-
-#cb.cp().process(['QCD']).AddSyst(cb, 'ss_to_os_extrap', 'lnN', ch.SystMap()(1.03)) # uncertainty on QCD extrapolation factor. # TODO section 8: update with the number measured by you
+cb.cp().process(['2017_TTbar', '2017_TTbar']).AddSyst(cb, 'xsec_ttbar', 'lnN', ch.SystMap()(1.2))
+cb.cp().process(['2017_others', '2017_others']).AddSyst(cb, 'xsec_others', 'lnN', ch.SystMap()(1.2))
+cb.cp().process(['2017_VV', '2017_VV']).AddSyst(cb, 'xsec_vv', 'lnN', ch.SystMap()(1.06)) # conservative uncertainty estimate for ttbar (6%) single top (5%) cross-section
+cb.cp().process(['2017_WZ', '2017_WZ']).AddSyst(cb, 'xsec_wz', 'lnN', ch.SystMap()(1.06)) # conservative uncertainty estimate for ttbar (6%) single top (5%) cross-section
+cb.cp().process(['2017_TX', '2017_TX']).AddSyst(cb, 'xsec_tx', 'lnN', ch.SystMap()(1.12)) # conservative uncertainty estimate for ttbar (6%) single top (5%) cross-section
 
 
 # Unconstrained rate parameter introduced for the tau ID efficiency, which usually is measured in the same region as the cross-section for Z->tautau.
