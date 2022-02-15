@@ -43,11 +43,19 @@ cb.cp().process(mc).AddSyst(cb,'muon_eff', 'lnN', ch.SystMap()(1.02)) # 2 % unce
 #b-tagging, trigger, JEC, PU, ECAL prefiring, L1 prefiring, 
 # to be added later HEM
 
+<<<<<<< HEAD
 #cb.cp().process(['2017_TTbar']).AddSyst(cb, 'xsec_ttbar', 'lnN', ch.SystMap()(1.2))
 #cb.cp().process(['2017_others']).AddSyst(cb, 'xsec_others', 'lnN', ch.SystMap()(1.2))
 cb.cp().process(['VV']).AddSyst(cb, 'xsec_vv', 'lnN', ch.SystMap()(1.06)) 
 cb.cp().process(['WZ']).AddSyst(cb, 'xsec_wz', 'lnN', ch.SystMap()(1.06)) 
 #cb.cp().process(['2017_TX']).AddSyst(cb, 'xsec_tx', 'lnN', ch.SystMap()(1.12)) 
+=======
+cb.cp().process(['2017_TTbar', '2017_TTbar']).AddSyst(cb, 'xsec_ttbar', 'lnN', ch.SystMap()(1.2))
+cb.cp().process(['2017_others', '2017_others']).AddSyst(cb, 'xsec_others', 'lnN', ch.SystMap()(1.2))
+cb.cp().process(['2017_VV', '2017_VV']).AddSyst(cb, 'xsec_vv', 'lnN', ch.SystMap()(1.06)) # conservative uncertainty estimate for ttbar (6%) single top (5%) cross-section
+cb.cp().process(['2017_WZ', '2017_WZ']).AddSyst(cb, 'xsec_wz', 'lnN', ch.SystMap()(1.06)) # conservative uncertainty estimate for ttbar (6%) single top (5%) cross-section
+cb.cp().process(['2017_TX', '2017_TX']).AddSyst(cb, 'xsec_tx', 'lnN', ch.SystMap()(1.12)) # conservative uncertainty estimate for ttbar (6%) single top (5%) cross-section
+>>>>>>> 33e5203ffd81b8266691088ac8d7dd410c8d9f3e
 
 
 # Unconstrained rate parameter introduced for the tau ID efficiency, which usually is measured in the same region as the cross-section for Z->tautau.
@@ -64,6 +72,7 @@ cb.cp().channel(['emul']).process(['VV', 'WZ','LFVStVecU']).AddSyst(cb, 'jes_', 
 # Define access of the input histograms; please note how systematics shape variations should be stored:
 #       $BIN/m_vis_$PROCESS_$SYSTEMATIC with $SYSTEMATIC containing the name like 'tau_es' and a postfix 'Up' or 'Down'
 for channel in categories:
+<<<<<<< HEAD
     #MChists = []
     #for f in mc :
     filepath_mc = os.path.join(os.environ['CMSSW_BASE'],'src/CombineHarvester/CMSDAS2020TauLong/shapes', '2017_VVandWZ.root')
@@ -73,6 +82,15 @@ for channel in categories:
     #filepath_signal = os.path.join(os.environ['CMSSW_BASE'],'src/CombineHarvester/CMSDAS2020TauLong/shapes','2017_'+ signals[0]+'.root')
 
     cb.cp().channel([channel]).signals().ExtractShapes(filepath_mc, '$PROCESS_VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST'  ,  '$PROCESS_VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST_$SYSTEMATIC')
+=======
+    for f in mc :
+        filepath_mc = os.path.join(os.environ['CMSSW_BASE'],'src/CombineHarvester/CMSDAS2020TauLong/shapes', f +'.root')
+        cb.cp().channel([channel]).backgrounds().ExtractShapes(filepath_mc,  'VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST'  ,  'VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST_$SYSTEMATIC')
+
+    filepath_signal = os.path.join(os.environ['CMSSW_BASE'],'src/CombineHarvester/CMSDAS2020TauLong/shapes', signals[0]+'.root')
+
+    cb.cp().channel([channel]).signals().ExtractShapes(filepath_mc, 'VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST'  ,  'VR_$BIN_lllOffZMetg20Jetgeq1Bleq1_BDT_ST_$SYSTEMATIC')
+>>>>>>> 33e5203ffd81b8266691088ac8d7dd410c8d9f3e
   
 
 ch.SetStandardBinNames(cb, '$ANALYSIS_$CHANNEL_$BIN_$ERA') # Define the name of the category names
