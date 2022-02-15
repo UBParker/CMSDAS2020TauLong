@@ -28,8 +28,8 @@ for channel in categories:
     cb.AddObservations(['*'], ['lfvstvecu'], ['2017'], [channel],              categories[channel]) # adding observed data
 
 
-    cb.AddProcesses(   ['*'], ['lfvstvecu'], ['2017'], [channel], backgrounds, categories[channel], False) # adding backgrounds
-    cb.AddProcesses(   ['*'], ['lfvstvecu'], ['2017'], [channel], signals,     categories[channel], True) # adding signals
+    cb.AddProcesses(   ['*'], ['lfvstvecu'], ['2017'], [channel], backgrounds, categories[channel], False ) # adding backgrounds
+    cb.AddProcesses(   ['*'], ['lfvstvecu'], ['2017'], [channel], signals,     categories[channel], True ) # adding signals
     
 cb.ForEachObs(lambda x : x.set_process('data_obs')) # some hack to changxe the naming to the one in the input files; usual name: data_obs
 # Adding systematic uncertainties
