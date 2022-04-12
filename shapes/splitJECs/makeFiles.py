@@ -8,23 +8,34 @@ uncerts = [ 'jesAbsoluteMPFBias_', 'jesAbsoluteScale_', 'jesAbsoluteStat_','jesF
 
 processes = ['ST' , 'TT'] 
 
+
+uncorrelated = ['jesAbsoluteStat_' , 'jesRelativeJEREC1_', 'jesRelativeJEREC2_', 'jesRelativePtEC1_', 'jesRelativePtEC2_','jesRelativeSample_','jesRelativeStatEC_','jesRelativeStatFSR_','jesRelativeStatHF_', 'jesTimePtEta_' ]
+
 for p in processes :
+
+
 
     years = ['2016','2017','2018']
     for y in years :
         string0 = 'rootcp ' + y + '_'
         for s in samples:
+
+                if p == 'ST' and s == 'LFVTtVecU' :
+                  continue
+                if p == 'TT' and s == 'LFVStVecU' :
+                  continue                
+                    
                 string1 = s + '.root:VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_' + p + '  '
-                string2 =  y+'_HistsSplitMC.root:' + s + '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p
+                string2 =  y+'_correlationsHistsSplitMC.root:' + s + '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p
                 if s == 'nonprompt':
                     string1 = 'data' + '.root:AR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT' + p + '  '
-                    string2 =  y+'_HistsSplitMC.root:' + s + '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p
+                    string2 =  y+'_correlationsHistsSplitMC.root:' + s + '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p
                 if s == 'data':
                     string1 = s + '.root:VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_' + p + '  '
-                    string2 =  y+'_HistsSplitMC.root:data_obs_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p
+                    string2 =  y+'_correlationsHistsSplitMC.root:data_obs_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p
                 if (s != 'data' and s != 'nonprompt' ) : 
                     string1 = s + '.root:VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_' + p + '  '
-                    string2 =  y+'_HistsSplitMC.root:' + s + '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p 
+                    string2 =  y+'_correlationsHistsSplitMC.root:' + s + '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p 
 
 
                 print string0 + string1+ string2
@@ -33,24 +44,27 @@ for p in processes :
                   u2= u
                   if 'jer' in u :
                       u2 = 'jer'+y+'_'
+                  if u in uncorrelated :
+                      u2 = 'Y' + y + u     
+
                   string1up = s + '.root:VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u + 'Up '
                   string1down = s + '.root:VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u + 'Down '
 
-                  string2Up = y+'_HistsSplitMC.root:' + s+ '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Up '
-                  string2Down = y+'_HistsSplitMC.root:' + s + '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Down '
+                  string2Up = y+'_correlationsHistsSplitMC.root:' + s+ '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Up '
+                  string2Down = y+'_correlationsHistsSplitMC.root:' + s + '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Down '
 
                   if s == 'nonprompt':
                       string1up = 'data' + '.root:AR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u + 'Up '
                       string1down = 'data' + '.root:AR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u + 'Down '
 
-                      string2Up = y+'_HistsSplitMC.root:' + s+ '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Up '
-                      string2Down = y+'_HistsSplitMC.root:' + s + '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Down '
+                      string2Up = y+'_correlationsHistsSplitMC.root:' + s+ '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Up '
+                      string2Down = y+'_correlationsHistsSplitMC.root:' + s + '_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Down '
                   if s == 'data':
                       string1up = s + '.root:VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u + 'Up '
                       string1down = s + '.root:VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u + 'Down '
 
-                      string2Up = y+'_HistsSplitMC.root:data_obs_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Up '
-                      string2Down = y+'_HistsSplitMC.root:data_obs_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Down '
+                      string2Up = y+'_correlationsHistsSplitMC.root:data_obs_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Up '
+                      string2Down = y+'_correlationsHistsSplitMC.root:data_obs_VR_emul_lllOffZMetg20Jetgeq1Bleq1_BDT_'+p+'_'+ u2 + 'Down '
 
 
 
