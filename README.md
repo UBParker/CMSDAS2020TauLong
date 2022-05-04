@@ -79,6 +79,11 @@ combineTool.py -M CollectLimits *setrto1-17-May2-10bin* --use-dirs -o setrto1-17
  combine --run blind -M AsymptoticLimits -d  ws_vecu_emul_emul_2018_2018_10bin_TTandST.root  -n setrto1-18-May2-10bin --expectSignal 1
 
 combineTool.py -M CollectLimits *setrto1-18-May2-10bin* --use-dirs -o setrto1-18limits_May2_10bin.json
+
+combine --run blind -M AsymptoticLimits -d  ws_vecu_emul_emul_run2_10bin_TTandST.root  -n setrto1-run2 --expectSignal 1
+
+combineTool.py -M CollectLimits *setrto1-run2* --use-dirs -o setrto1-run2limits.json
+
 ```
 
 ### Determine impacts of the nuissance parameters
